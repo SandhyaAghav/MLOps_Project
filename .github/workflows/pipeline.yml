@@ -17,7 +17,7 @@ jobs:
       - name: Find requirements.txt
         run: find . -name requirements.txt
       - name: List repo files
-        run: ls -la
+        run: ls -la tourism_project
   
       - name: Install Dependencies
         run: pip install -r ./tourism_project/requirements.txt
