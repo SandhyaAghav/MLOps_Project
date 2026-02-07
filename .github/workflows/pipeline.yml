@@ -15,6 +15,12 @@ jobs:
       - uses: actions/checkout@v3
       - name: Find requirements.txt
         run: find . -name requirements.txt
+      - name: Sanity check
+        run: |
+          echo "Script location (irrelevant): $0"
+          echo "Actual working dir:"
+          pwd
+          ls -la
       - name: Install dependencies
         run: pip install -r requirements.txt
      
