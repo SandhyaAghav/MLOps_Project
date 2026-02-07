@@ -33,6 +33,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python model_building/data_register.py
+        working-directory: tourism_project
 
   data-prep:
     needs: register-dataset
@@ -45,6 +46,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python model_building/prep.py
+        working-directory: tourism_project
 
 
   model-traning:
