@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - main  # Automatically triggers on push to the main branch
-
+defaults:
+  run:
+    working-directory: tourism_project
 jobs:
 
   register-dataset:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-       working-directory: tourism_project
     steps:
       - uses: actions/checkout@v3
       - name: Find requirements.txt
@@ -27,9 +26,6 @@ jobs:
   data-prep:
     needs: register-dataset
     runs-on: ubuntu-latest
-    defaults:
-      run:
-       working-directory: tourism_project
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
@@ -43,9 +39,6 @@ jobs:
   model-traning:
     needs: data-prep
     runs-on: ubuntu-latest
-    defaults:
-      run:
-       working-directory: tourism_project
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
@@ -61,9 +54,6 @@ jobs:
 
   deploy-hosting:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-       working-directory: tourism_project
     needs: [model-traning,data-prep,register-dataset]
     steps:
       - uses: actions/checkout@v3
