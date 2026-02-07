@@ -23,7 +23,12 @@ jobs:
           ls -la
       - name: Install dependencies
         run: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
-     
+      - name: Debug cwd and files
+        run: |
+            pwd
+            ls -la
+            ls -la model_building || echo "model_building not here"
+            ls -la tourism_project || echo "tourism_project not here"
       - name: Upload Dataset to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
