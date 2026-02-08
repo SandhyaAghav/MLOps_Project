@@ -8,3 +8,4 @@ api.upload_folder(
     repo_type="space",                      # dataset, model, or space
     path_in_repo="",                          # optional: subfolder path inside the repo
 )
+
