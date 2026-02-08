@@ -41,6 +41,8 @@ jobs:
         run: pip install -r tourism_project/requirements.txt
 
       - name: Run Data Preparation
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tourism_project/model_building/prep.py
 
   model-training:
@@ -57,6 +59,8 @@ jobs:
         run: pip install -r tourism_project/requirements.txt
 
       - name: Model Training
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tourism_project/model_building/train.py
 
   deploy-hosting:
