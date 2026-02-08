@@ -38,7 +38,6 @@ ordinal_cols = [
     'PitchSatisfactionScore'
 ]
 binary_cols = ['Passport', 'OwnCar']
-ordinal_encoder = OrdinalEncoder()
 
 # List of numerical features in the dataset
 numeric_features = [
@@ -68,9 +67,9 @@ class_weight
 # Define the preprocessing steps
 preprocessor = make_column_transformer(
     (StandardScaler(), numeric_features),
-    (OneHotEncoder(handle_unknown='ignore'), categorical_features),
-    (OrdinalEncoder(), ordinal_cols),
-        ("passthrough", binary_cols)
+    (OneHotEncoder(handle_unknown="ignore"), categorical_features),
+    (OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1), ordinal_cols),
+    (OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1), binary_cols),
 )
 
 # Define base XGBoost model
