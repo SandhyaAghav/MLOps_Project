@@ -1,25 +1,38 @@
-from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 from huggingface_hub import HfApi, create_repo
+from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import os
-
 
 repo_id = "Sandhya-2025/tourism-package-purchase"
 repo_type = "dataset"
 
-# Initialize API client
-api = HfApi(token=os.getenv("HF_TOKEN"))
+HF_TOKEN = os.getenv("HF_TOKEN")
+if not HF_TOKEN:
+    raise RuntimeError("HF_TOKEN environment variable is not set")
 
-# Step 1: Check if the space exists
+api = HfApi(token=HF_TOKEN)
+
+# Step 1: Ensure dataset repo exists
 try:
     api.repo_info(repo_id=repo_id, repo_type=repo_type)
-    print(f"Space '{repo_id}' already exists. Using it.")
+    print(f"Dataset repo '{repo_id}' already exists.")
 except RepositoryNotFoundError:
-    print(f"Space '{repo_id}' not found. Creating new space...")
-    create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
-    print(f"Space '{repo_id}' created.")
+    print(f"Dataset repo '{repo_id}' not found. Creating it...")
+    create_repo(
+        repo_id=repo_id,
+        repo_type=repo_type,
+        token=HF_TOKEN,
+        private=False,
+        exist_ok=True
+    )
+    print(f"Dataset repo '{repo_id}' created.")
+except HfHubHTTPError as e:
+    raise RuntimeError(
+        "Authentication failed. Check HF_TOKEN permissions (dataset + write)."
+    ) from e
 
+# Step 2: Upload dataset
 api.upload_folder(
-    folder_path="tourism_project/data",
+    folder_path="data",   # ✅ correct relative path
     repo_id=repo_id,
     repo_type=repo_type,
 )
