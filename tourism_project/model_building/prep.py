@@ -4,7 +4,6 @@ import sklearn
 # for creating a folder
 import os
 # for data preprocessing and pipeline creation
-from sklearn.preprocessing import StandardScaler, OneHotEncoder,OrdinalEncoder
 from sklearn.model_selection import train_test_split
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi
@@ -28,7 +27,6 @@ ordinal_cols = [
     "PitchSatisfactionScore"
 ]
 binary_cols = ["Passport", "OwnCar"]
-ordinal_encoder = OrdinalEncoder()
 
 # List of numerical features in the dataset
 numeric_features = [
