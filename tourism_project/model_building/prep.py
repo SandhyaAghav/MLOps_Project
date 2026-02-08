@@ -4,6 +4,7 @@ import sklearn
 # for creating a folder
 import os
 # for data preprocessing and pipeline creation
+from sklearn.preprocessing import StandardScaler, OneHotEncoder,OrdinalEncoder
 from sklearn.model_selection import train_test_split
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi
@@ -19,7 +20,7 @@ print("Dataset loaded successfully.")
 target = 'ProdTaken'
 
 # Replacing Fe male with Female
-tourism_dataset["Gender"].replace("Fe Male", "Female", inplace=True)
+tourism_dataset["Gender"] = tourism_dataset["Gender"].replace("Fe Male", "Female")
 
 ordinal_cols = [
     "CityTier",
