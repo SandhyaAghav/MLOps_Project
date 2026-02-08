@@ -35,7 +35,7 @@ numeric_features = [
     'Age',             # Age of the customer.
     'MonthlyIncome',   # Gross monthly income of the customer.
     'DurationOfPitch', # Duration of the sales pitch delivered to the customer.
-    'NumberOfTrips'    # Average number of trips the customer takes annually.
+    'NumberOfTrips',    # Average number of trips the customer takes annually.
     'NumberOfPersonVisiting',   #Total number of people accompanying the customer on the trip.
     'NumberOfChildrenVisiting', # Number of children below age 5 accompanying the customer.
     'NumberOfFollowups'         # Total number of follow-ups by the salesperson after the sales pitch.
@@ -48,7 +48,7 @@ categorical_features = [
     'Gender',            # Gender of the customer (Male, Female).
     'MaritalStatus',     # Marital status of the customer (Single, Married, Divorced).
     'Designation',       # Customer's designation in their current organization.
-    'ProductPitched',    # The type of product pitched to the customer.
+    'ProductPitched'    # The type of product pitched to the customer.
 ]
 
 # Define predictor matrix (X) using selected numeric and categorical features
