@@ -17,7 +17,7 @@ st.write("Kindly enter the customer details to check whether customer will purch
 # Collect user input
 TypeofContact = st.selectbox("Select the method by which the customer was contacted", ["Company Invited", "Self Inquiry"])
 Age = st.number_input("Enter the age (customer's age in years)", min_value=18, max_value=100, value=30)
-CityTier=st.number_input("Enter the city category based on development, population, and living standards (Tier 1 > Tier 2 > Tier 3)",min_value=1,max_value=3, value=2).
+CityTier=st.number_input("Enter the city category based on development, population, and living standards (Tier 1 > Tier 2 > Tier 3)",min_value=1,max_value=3, value=2)
 Occupation = st.selectbox("Select Customer's occupation", ["Salaried", "Freelancer"])
 Gender = st.selectbox("Select gender of the customer", ["Male", "Female"])
 NumberOfPersonVisiting = st.number_input("Enter the total number of people accompanying the customer on the trip.", min_value=0, value=1)
