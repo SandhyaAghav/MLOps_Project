@@ -64,5 +64,5 @@ classification_threshold = 0.45
 if st.button("Predict"):
     prediction_proba = model.predict_proba(input_data)[0, 1]
     prediction = (prediction_proba >= classification_threshold).astype(int)
-    result = "purchase product" if prediction == 1 else "not purchase product"
+    result = "Customer will purchase the product" if prediction == 1 else "Customer will not purchase the product"
     st.write(f"Based on the information provided, the customer is likely to {result}.")
