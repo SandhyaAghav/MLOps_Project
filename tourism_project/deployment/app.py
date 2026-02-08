@@ -15,27 +15,46 @@ st.write("The Product Purchase Prediction App is an internal tool that predicts 
 st.write("Kindly enter the customer details to check whether customer will purchase the newly introduced Wellness Tourism Package")
 
 # Collect user input
-CreditScore = st.number_input("Credit Score (customer's credit score)", min_value=300, max_value=900, value=650)
-Geography = st.selectbox("Geography (country where the customer resides)", ["France", "Germany", "Spain"])
-Age = st.number_input("Age (customer's age in years)", min_value=18, max_value=100, value=30)
-Tenure = st.number_input("Tenure (number of years the customer has been with the bank)", value=12)
-Balance = st.number_input("Account Balance (customer’s account balance)", min_value=0.0, value=10000.0)
-NumOfProducts = st.number_input("Number of Products (number of products the customer has with the bank)", min_value=1, value=1)
-HasCrCard = st.selectbox("Has Credit Card?", ["Yes", "No"])
-IsActiveMember = st.selectbox("Is Active Member?", ["Yes", "No"])
-EstimatedSalary = st.number_input("Estimated Salary (customer’s estimated salary)", min_value=0.0, value=50000.0)
+TypeofContact = st.selectbox("Select the method by which the customer was contacted", ["Company Invited", "Self Inquiry"]).
+Age = st.number_input("Enter the age (customer's age in years)", min_value=18, max_value=100, value=30)
+CityTier=st.number_input("Enter the city category based on development, population, and living standards (Tier 1 > Tier 2 > Tier 3)",min_value=1,max_value=3, value=2).
+Occupation = st.selectbox("Select Customer's occupation", ["Salaried", "Freelancer"])
+Gender = st.selectbox("Select gender of the customer", ["Male", "Female"])
+NumberOfPersonVisiting = st.number_input("Enter the total number of people accompanying the customer on the trip.", min_value=0, value=1)
+MonthlyIncome = st.number_input("Enter gross monthly income of the customer.", min_value=1000.0, value=50000.0)
+PreferredPropertyStar = st.number_input("Enter the preferred hotel rating by the customer.)", min_value=3,max_value=5, value=4)
+MaritalStatus = st.selectbox("Select marital status of the customer.", ["Single", "Married","Divorced"])
+NumberOfTrips = st.number_input("Enter the average number of trips the customer takes annually.", min_value=1,max_value=24, value=5)
+Passport = st.selectbox("Whether the customer holds a valid passport?", ["Yes", "No"])
+OwnCar = st.selectbox("Whether the customer owns a car?", ["Yes", "No"])
+NumberOfChildrenVisiting = st.number_input("Enter the number of children below age 5 accompanying the customer.", min_value=0,max_value=4, value=0)
+Designation = st.selectbox("Select the customer's designation in their current organization.", ["Executive", "Manager","Senior Manager","AVP","VP"])
+PitchSatisfactionScore = st.number_input("Enter the score indicating the customer's satisfaction with the sales pitch.)", min_value=1,max_value=5, value=3)
+ProductPitched = st.selectbox("Select the type of product pitched to the customer.", ["Basic", "Deluxe","Standard","Super Deluxe","King"])
+NumberOfFollowups =st.number_input("Enter the total number of follow-ups by the salesperson after the sales pitch.", min_value=1,max_value=10, value=2)
+DurationOfPitch = st.number_input("Enter the duration of the sales pitch delivered to the customer.", min_value=5,max_value=127, value=10)
+
 
 # Convert categorical inputs to match model training
 input_data = pd.DataFrame([{
-    'CreditScore': CreditScore,
-    'Geography': Geography,
-    'Age': Age,
-    'Tenure': Tenure,
-    'Balance': Balance,
-    'NumOfProducts': NumOfProducts,
-    'HasCrCard': 1 if HasCrCard == "Yes" else 0,
-    'IsActiveMember': 1 if IsActiveMember == "Yes" else 0,
-    'EstimatedSalary': EstimatedSalary
+    'TypeofContact': TypeofContact,
+    'Occupation': Occupation,
+    'Gender': Gender,
+    'Designation': Designation,
+    'MaritalStatus': MaritalStatus,
+    'ProductPitched': ProductPitched,
+    'Age':Age,
+    'CityTier':CityTier,
+    'NumberOfPersonVisiting' : NumberOfPersonVisiting,
+    'MonthlyIncome' : MonthlyIncome,
+    'PreferredPropertyStar': PreferredPropertyStar,
+    'NumberOfTrips': NumberOfTrips,
+    'NumberOfChildrenVisiting': NumberOfChildrenVisiting,
+    'Passport': 1 if Passport == "Yes" else 0,
+    'OwnCar': 1 if OwnCar == "Yes" else 0,
+    'NumberOfFollowups': NumberOfFollowups,
+    'DurationOfPitch': DurationOfPitch,
+    'PitchSatisfactionScore': PitchSatisfactionScore
 }])
 
 # Set the classification threshold
